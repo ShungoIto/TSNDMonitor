@@ -23,14 +23,6 @@ public class Main extends Application {
 	  Scene scene = new Scene(fxmlSchene, 1280, 800);
 	  stage.setScene(scene);
 	  stage.show();
-	  
-		  
-		  
-//			BorderPane root = new BorderPane();
-//			Scene scene = new Scene(root,d.getWidth(),d.getHeight());
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
 	}
 	
 	public static void main(String[] args) {

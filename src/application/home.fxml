@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
+<Pane maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="50.0" layoutY="0" stroke="TRANSPARENT" strokeType="INSIDE" width="1280.0" />
       <Line endX="1280.0" endY="450.0" startY="450.0" />
@@ -100,7 +100,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="stopButton" layoutX="87.0" layoutY="53.0" mnemonicParsing="false" onAction="#stopButtonAction" prefHeight="34.0" prefWidth="34.0">
+      <Button fx:id="stopButton" disable="true" layoutX="87.0" layoutY="53.0" mnemonicParsing="false" onAction="#stopButtonAction" prefHeight="34.0" prefWidth="34.0">
          <graphic>
             <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -118,6 +118,52 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label layoutX="184.0" layoutY="264.0" text="0">
+         <font>
+            <Font name="YuGothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="185.0" layoutY="614.0" text="0">
+         <font>
+            <Font name="YuGothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <Line endX="1080.0" endY="135.0" startX="200.0" startY="135.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="170.0" startX="200.0" startY="170.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="205.0" startX="200.0" startY="205.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="240.0" startX="200.0" startY="240.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="415.0" startX="200.0" startY="415.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="380.0" startX="200.0" startY="380.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="345.0" startX="200.0" startY="345.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="310.0" startX="200.0" startY="310.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="485.0" startX="200.0" startY="485.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="520.0" startX="200.0" startY="520.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="555.0" startX="200.0" startY="555.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="590.0" startX="200.0" startY="590.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="660.0" startX="200.0" startY="660.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="695.0" startX="200.0" startY="695.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="730.0" startX="200.0" startY="730.0" stroke="#c6c6c6" />
+      <Line endX="1080.0" endY="765.0" startX="200.0" startY="765.0" stroke="#c6c6c6" />
+      <Label layoutX="147.0" layoutY="100.0" text="15000">
+         <font>
+            <Font name="YuGothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="139.0" layoutY="432.0" text="-15000">
+         <font>
+            <Font name="YuGothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="156.0" layoutY="450.0" text="6000">
+         <font>
+            <Font name="YuGothic Medium" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="148.0" layoutY="778.0" text="-4000">
+         <font>
+            <Font name="YuGothic Medium" size="18.0" />
+         </font>
+      </Label>
 
       
    </children>
