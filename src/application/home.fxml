@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.image.*?>
@@ -13,8 +14,6 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="50.0" layoutY="0" stroke="TRANSPARENT" strokeType="INSIDE" width="1280.0" />
       <Line endX="1280.0" endY="450.0" startY="450.0" />
-      <Line endX="1080.0" endY="275.0" startX="200.0" startY="275.0" strokeWidth="4.0" />
-      <Line endX="1080.0" endY="625.0" startX="200.0" startY="625.0" strokeWidth="4.0" />
       <Line endX="200.0" endY="800.0" startX="200.0" startY="100.0" />
       <Line endX="1080.0" endY="800.0" startX="1080.0" startY="100.0" />
       <Line endX="1280.0" endY="100.0" startY="100.0" />
@@ -54,12 +53,12 @@
             <Font name="YuGothic Medium" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="12.0" layoutY="111.0" text="加速度">
+      <Label layoutX="70.0" layoutY="261.0" text="加速度">
          <font>
             <Font name="YuGothic Medium" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="13.0" layoutY="461.0" text="角速度">
+      <Label layoutX="70.0" layoutY="627.0" text="角速度">
          <font>
             <Font name="YuGothic Medium" size="24.0" />
          </font>
@@ -118,52 +117,25 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="184.0" layoutY="264.0" text="0">
-         <font>
-            <Font name="YuGothic Medium" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="185.0" layoutY="614.0" text="0">
-         <font>
-            <Font name="YuGothic Medium" size="18.0" />
-         </font>
-      </Label>
-      <Line endX="1080.0" endY="135.0" startX="200.0" startY="135.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="170.0" startX="200.0" startY="170.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="205.0" startX="200.0" startY="205.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="240.0" startX="200.0" startY="240.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="415.0" startX="200.0" startY="415.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="380.0" startX="200.0" startY="380.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="345.0" startX="200.0" startY="345.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="310.0" startX="200.0" startY="310.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="485.0" startX="200.0" startY="485.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="520.0" startX="200.0" startY="520.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="555.0" startX="200.0" startY="555.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="590.0" startX="200.0" startY="590.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="660.0" startX="200.0" startY="660.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="695.0" startX="200.0" startY="695.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="730.0" startX="200.0" startY="730.0" stroke="#c6c6c6" />
-      <Line endX="1080.0" endY="765.0" startX="200.0" startY="765.0" stroke="#c6c6c6" />
-      <Label layoutX="147.0" layoutY="100.0" text="15000">
-         <font>
-            <Font name="YuGothic Medium" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="139.0" layoutY="432.0" text="-15000">
-         <font>
-            <Font name="YuGothic Medium" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="156.0" layoutY="450.0" text="6000">
-         <font>
-            <Font name="YuGothic Medium" size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="148.0" layoutY="778.0" text="-4000">
-         <font>
-            <Font name="YuGothic Medium" size="18.0" />
-         </font>
-      </Label>
+      <LineChart fx:id="acceleChart" layoutX="199.0" layoutY="100.0" prefHeight="349.0" prefWidth="882.0">
+        <xAxis>
+          <CategoryAxis fx:id="acceleXAxis" label="時間" side="BOTTOM">
+          	
+          </CategoryAxis>
+        </xAxis>
+        
+        <yAxis>
+          <NumberAxis fx:id="acceleYAxis" label="加速度" side="LEFT" />
+        </yAxis>
+      </LineChart>
+      <LineChart fx:id="gyroChart" layoutX="200.0" layoutY="450.0" prefHeight="349.0" prefWidth="882.0">
+        <xAxis>
+          <CategoryAxis fx:id="gyroXAxis" label="時間" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="gyroYAxis" label="ジャイロ" side="LEFT" />
+        </yAxis>
+      </LineChart>
 
       
    </children>

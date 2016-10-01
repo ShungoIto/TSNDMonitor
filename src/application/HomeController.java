@@ -1,19 +1,22 @@
 package application;
 
-import java.lang.management.ManagementFactory;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-import javafx.concurrent.Task;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class HomeController {
-  private static boolean sensor = false;  
   
   @FXML
   private Button homeButton;
@@ -28,11 +31,31 @@ public class HomeController {
   @FXML
   private Button saveButton;
   
-  private ExecutorService executor;
-  Task<Void> task;
+  @FXML
+  private LineChart<String, Double> acceleChart;
+  @FXML
+  private LineChart<String, Double> gyroChart;
   
+  @FXML
+  private CategoryAxis acceleXAxis;
+  @FXML
+  private NumberAxis acceleYAxis;
+  @FXML
+  private CategoryAxis gyroXAxis;
+  @FXML
+  private NumberAxis gyroYAxis;
   
+  private XYChart.Series<String, Double> accelerationData;
+  private XYChart.Series<String, Double> gyroData;
+  private Timeline timeline;
   
+  @FXML
+  public void initialize(){
+   this.accelerationData = new XYChart.Series<>();
+   acceleChart.getData().add(accelerationData);
+   this.gyroData = new XYChart.Series<>();
+   gyroChart.getData().add(gyroData);
+  }
   
   @FXML
   private void homeButtonAction(ActionEvent event){
@@ -48,30 +71,17 @@ public class HomeController {
     startButton.setDisable(true);
     stopButton.setDisable(false);
     Main.log = "";
-    sensor = true;
-    int procs = ManagementFactory.getOperatingSystemMXBean().getAvailableProcessors(); 
-    executor = Executors.newFixedThreadPool(procs);
-    
-    task = new Task<Void>(){
-      @Override
-      protected Void call() throws Exception {
-        while(sensor == true){
-          drawGraph();
-        }
-        return null;
-      }
-    };
-    new Thread(task).start();
+    drawGraph();
   }
   @FXML
   private void stopButtonAction(ActionEvent event){
-    if(task.isRunning()){
-      task.cancel();
-      sensor = false;
-      startButton.setDisable(false);
-      stopButton.setDisable(true);
-      System.out.println("stop");
-      executor.shutdown();
+ // タイムラインの停止
+    if(timeline != null) {
+        timeline.stop();
+        timeline = null;
+        startButton.setDisable(false);
+        stopButton.setDisable(true);
+        System.out.println("stop");
     }
   }
   @FXML
@@ -79,6 +89,40 @@ public class HomeController {
   }
   
   //グラフ描画
-  public static void drawGraph(){
+  public void drawGraph(){
+    addChartData();
+    this.timeline = new Timeline();
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.getKeyFrames().add(new KeyFrame(
+        Duration.seconds(1),
+        new EventHandler<ActionEvent>(){
+          @Override
+          public void handle(ActionEvent event){
+            addDummyData();
+          }
+        }));
+    timeline.play();
+  }
+  
+  //グラフにデータを追加する
+  public void addDummyData(){
+    double y1 = Math.random()*25000 - 10000;
+    double y2 = Math.random()*6000 - 3000;
+    
+    final SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+    long currentTime = System.currentTimeMillis();
+    String strTime = dateFormatter.format(new Date(currentTime));
+    
+    if(accelerationData.getData().size()>10){
+      accelerationData.getData().remove(0);
+      gyroData.getData().remove(0);
+    }
+    
+    this.accelerationData.getData().add(new XYChart.Data<String, Double>(strTime, y1));
+    this.gyroData.getData().add(new XYChart.Data<String, Double>(strTime, y2));
+  }
+  
+  public void addChartData(){
+    
   }
 }
