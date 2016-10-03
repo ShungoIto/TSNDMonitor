@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import nodamushi.jfx.chart.linechart.LineChart;
 import nodamushi.jfx.chart.linechart.LineChartData;
 import nodamushi.jfx.chart.linechart.LinearAxis;
@@ -33,13 +35,14 @@ public class HomeController {
   private Button saveButton;
   
   private Timeline timeline;
-  private double[] x = new double[DATA_LENGTH];
-  private double[] acceleData1 = new double[DATA_LENGTH];
-  private double[] acceleData2 = new double[DATA_LENGTH];
-  private double[] acceleData3 = new double[DATA_LENGTH];
-  private double[] gyroData1 = new double[DATA_LENGTH];
-  private double[] gyroData2 = new double[DATA_LENGTH];
-  private double[] gyroData3 = new double[DATA_LENGTH];
+  private ArrayList<Double> x = new ArrayList<Double>();
+  private ArrayList<Double> acceleData1 = new ArrayList<Double>();
+  private ArrayList<Double> acceleData2 = new ArrayList<Double>();
+  private ArrayList<Double> acceleData3 = new ArrayList<Double>();
+  private ArrayList<Double> gyroData1 = new ArrayList<Double>();
+  private ArrayList<Double> gyroData2 = new ArrayList<Double>();
+  private ArrayList<Double> gyroData3 = new ArrayList<Double>();
+  private int count = 0;
   private LineChartData acceleDataX, acceleDataY, acceleDataZ, gyroDataX, gyroDataY, gyroDataZ;
   private LineChart acceleChart;
   private LineChart gyroChart;
@@ -67,6 +70,9 @@ public class HomeController {
     acceleDataX = new LineChartData(DATA_LENGTH);
     acceleDataY = new LineChartData(DATA_LENGTH);
     acceleDataZ = new LineChartData(DATA_LENGTH);
+    acceleDatas.add(acceleDataX);
+    acceleDatas.add(acceleDataY);
+    acceleDatas.add(acceleDataZ);
     pane.getChildren().add(acceleChart);
     
     //ジャイログラフの設定
@@ -84,6 +90,9 @@ public class HomeController {
     gyroDataX = new LineChartData(DATA_LENGTH);
     gyroDataY = new LineChartData(DATA_LENGTH);
     gyroDataZ = new LineChartData(DATA_LENGTH);
+    gyroDatas.add(gyroDataX);
+    gyroDatas.add(gyroDataY);
+    gyroDatas.add(gyroDataZ);
     pane.getChildren().add(gyroChart);
   }
 
@@ -100,26 +109,17 @@ public class HomeController {
   private void startButtonAction(ActionEvent event){
     startButton.setDisable(true);
     stopButton.setDisable(false);
-    Main.log = "";
-    drawGraph();
-    
-    calcData();
-    acceleDatas.add(acceleDataX);
-    acceleDatas.add(acceleDataY);
-    acceleDatas.add(acceleDataZ);
-    gyroDatas.add(gyroDataX);
-    gyroDatas.add(gyroDataY);
-    gyroDatas.add(gyroDataZ);
+    Main.log = "";    
+    addDummyData();
 
-    timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), new EventHandler<ActionEvent>(){
+    timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), new EventHandler<ActionEvent>(){
       @Override
       public void handle(final ActionEvent e){
-        calcData();
+        addDummyData();
       }
     }));
     timeline.setCycleCount(Timeline.INDEFINITE);
     timeline.play();
-    
   }
   @FXML
   private void stopButtonAction(ActionEvent event){
@@ -136,64 +136,55 @@ public class HomeController {
   private void saveButtonAction(ActionEvent event){
   }
   
-  //グラフ描画
-  public void drawGraph(){
-    addChartData();
-    this.timeline = new Timeline();
-    timeline.setCycleCount(Timeline.INDEFINITE);
-    timeline.getKeyFrames().add(new KeyFrame(
-        Duration.seconds(1),
-        new EventHandler<ActionEvent>(){
-          @Override
-          public void handle(ActionEvent event){
-//            addDummyData();
-          }
-        }));
-    timeline.play();
-  }
-  
-  //グラフにデータを追加する
-//  public void addDummyData(){
-//    double y1 = Math.random()*25000 - 10000;
-//    double y2 = Math.random()*6000 - 3000;
-//    
-//    final SimpleDateFormat dateFormatter = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-//    long currentTime = System.currentTimeMillis();
-//    String strTime = dateFormatter.format(new Date(currentTime));
-//    
-//    if(accelerationData.getData().size()>10){
-//      accelerationData.getData().remove(0);
-//      gyroData.getData().remove(0);
-//    }
-//    
-//    this.accelerationData.getData().add(new XYChart.Data<String, Double>(strTime, y1));
-//    this.gyroData.getData().add(new XYChart.Data<String, Double>(strTime, y2));
-//  }
-  
-  public void addChartData(){
-    
-  }
-  
-  private void calcData() {
-    for(int i=0;i < DATA_LENGTH;i++){
-      final double x = i;
-      this.x[i] = x;
-      acceleData1[i] = Math.random()*7000 + 2000;
-      acceleData2[i] = Math.random()*4000 - 3000;
-      acceleData3[i] = Math.random()*(-1000) - 3000;
-      
-      gyroData1[i] = Math.random()*7000 + 2000;
-      gyroData2[i] = Math.random()*4000 - 3000;
-      gyroData3[i] = Math.random()*(-1000) - 3000;
-      
+  private void addDummyData() {
+    this.x.add((double) count);
+    for(int i=0;i<50;i++){
+      this.x.add((double)i);
     }
-    acceleDataX.setData(x, acceleData1);
-    acceleDataY.setData(x, acceleData2);
-    acceleDataZ.setData(x, acceleData3);
     
-    gyroDataX.setData(x, gyroData1);
-    gyroDataY.setData(x, gyroData2);
-    gyroDataZ.setData(x, gyroData3);
+    acceleData1.add(Math.random()*7000 + 2000);
+    acceleData2.add(Math.random()*4000 - 3000);
+    acceleData3.add(Math.random()*(-1000) - 3000);
+    gyroData1.add(Math.random()*7000 + 2000);
+    gyroData2.add(Math.random()*4000 - 3000);
+    gyroData3.add(Math.random()*(-1000) - 3000);
+    
+    if (acceleData1.size()>50){
+      acceleData1.remove(0);
+      acceleData2.remove(0);
+      acceleData3.remove(0);
+      gyroData1.remove(0);
+      gyroData2.remove(0);
+      gyroData3.remove(0);
+    }
+    
+    double[] x1 = new double[x.size()];
+    double[] a1 = new double[acceleData1.size()];
+    double[] a2 = new double[acceleData2.size()];
+    double[] a3 = new double[acceleData3.size()];
+    double[] g1 = new double[gyroData1.size()];
+    double[] g2 = new double[gyroData2.size()];
+    double[] g3 = new double[gyroData3.size()];
+    
+    
+    for(int i=0;i<x.size();i++){
+      x1[i] = x.get(i);
+    }
+    for(int i=0;i<acceleData1.size();i++){
+      a1[i] = acceleData1.get(i);
+      a2[i] = acceleData2.get(i);
+      a3[i] = acceleData3.get(i);
+      g1[i] = gyroData1.get(i);
+      g2[i] = gyroData2.get(i);
+      g3[i] = gyroData3.get(i);
+    }
+    acceleDataX.setData(x1, a1);
+    acceleDataY.setData(x1, a2);
+    acceleDataZ.setData(x1, a3);
+    
+    gyroDataX.setData(x1, g1);
+    gyroDataY.setData(x1, g2);
+    gyroDataZ.setData(x1, g3);
     
   }
 }
