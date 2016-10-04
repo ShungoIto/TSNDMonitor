@@ -17,7 +17,7 @@ import javafx.util.Duration;
 
 public class HomeController {
   
-  final static int DATA_LENGTH = 600;
+  final static int DATA_LENGTH = 60;
   
   @FXML
   private Pane pane;
@@ -94,6 +94,16 @@ public class HomeController {
     gyroDatas.add(gyroDataY);
     gyroDatas.add(gyroDataZ);
     pane.getChildren().add(gyroChart);
+    
+    System.out.println("初期化");
+    for(int i=0;i<50;i++){
+      acceleData1.add(0.0);
+      acceleData2.add(0.0);
+      acceleData3.add(0.0);
+      gyroData1.add(0.0);
+      gyroData2.add(0.0);
+      gyroData3.add(0.0);
+    }
   }
 
   @FXML
@@ -157,6 +167,8 @@ public class HomeController {
       gyroData2.remove(0);
       gyroData3.remove(0);
     }
+    System.out.println(acceleData1.size());
+    
     
     double[] x1 = new double[x.size()];
     double[] a1 = new double[acceleData1.size()];
