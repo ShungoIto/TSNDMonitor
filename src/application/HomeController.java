@@ -17,7 +17,7 @@ import javafx.util.Duration;
 
 public class HomeController {
   
-  final static int DATA_LENGTH = 60;
+  final static int DATA_LENGTH = 201;
   
   @FXML
   private Pane pane;
@@ -42,7 +42,6 @@ public class HomeController {
   private ArrayList<Double> gyroData1 = new ArrayList<Double>();
   private ArrayList<Double> gyroData2 = new ArrayList<Double>();
   private ArrayList<Double> gyroData3 = new ArrayList<Double>();
-  private int count = 0;
   private LineChartData acceleDataX, acceleDataY, acceleDataZ, gyroDataX, gyroDataY, gyroDataZ;
   private LineChart acceleChart;
   private LineChart gyroChart;
@@ -95,14 +94,14 @@ public class HomeController {
     gyroDatas.add(gyroDataZ);
     pane.getChildren().add(gyroChart);
     
-    System.out.println("初期化");
-    for(int i=0;i<50;i++){
+    for(int i=0;i<DATA_LENGTH;i++){
       acceleData1.add(0.0);
       acceleData2.add(0.0);
       acceleData3.add(0.0);
       gyroData1.add(0.0);
       gyroData2.add(0.0);
       gyroData3.add(0.0);
+      x.add((double)i);
     }
   }
 
@@ -122,7 +121,7 @@ public class HomeController {
     Main.log = "";    
     addDummyData();
 
-    timeline = new Timeline(new KeyFrame(Duration.seconds(0.1), new EventHandler<ActionEvent>(){
+    timeline = new Timeline(new KeyFrame(Duration.seconds(0.03), new EventHandler<ActionEvent>(){
       @Override
       public void handle(final ActionEvent e){
         addDummyData();
@@ -147,11 +146,6 @@ public class HomeController {
   }
   
   private void addDummyData() {
-    this.x.add((double) count);
-    for(int i=0;i<50;i++){
-      this.x.add((double)i);
-    }
-    
     acceleData1.add(Math.random()*7000 + 2000);
     acceleData2.add(Math.random()*4000 - 3000);
     acceleData3.add(Math.random()*(-1000) - 3000);
@@ -159,7 +153,7 @@ public class HomeController {
     gyroData2.add(Math.random()*4000 - 3000);
     gyroData3.add(Math.random()*(-1000) - 3000);
     
-    if (acceleData1.size()>50){
+    if (acceleData1.size()>DATA_LENGTH){
       acceleData1.remove(0);
       acceleData2.remove(0);
       acceleData3.remove(0);
@@ -167,8 +161,6 @@ public class HomeController {
       gyroData2.remove(0);
       gyroData3.remove(0);
     }
-    System.out.println(acceleData1.size());
-    
     
     double[] x1 = new double[x.size()];
     double[] a1 = new double[acceleData1.size()];
@@ -177,7 +169,6 @@ public class HomeController {
     double[] g1 = new double[gyroData1.size()];
     double[] g2 = new double[gyroData2.size()];
     double[] g3 = new double[gyroData3.size()];
-    
     
     for(int i=0;i<x.size();i++){
       x1[i] = x.get(i);
