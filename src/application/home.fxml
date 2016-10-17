@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="800.0" maxWidth="1280.0" minHeight="800.0" minWidth="1280.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e1e1e1" height="50.0" layoutY="0" stroke="TRANSPARENT" strokeType="INSIDE" width="1280.0" />
+      <Line endX="1280.0" endY="450.0" startY="450.0" />
+      <Line endX="130.0" endY="800.0" startX="130.0" startY="100.0" />
+      <Line endX="1080.0" endY="800.0" startX="1080.0" startY="100.0" />
+      <Line endX="1280.0" endY="100.0" startY="100.0" />
+      <Line endX="1150.0" endY="230.0" startX="1100.0" startY="230.0" stroke="#f80808" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="320.0" startX="1100.0" startY="320.0" stroke="#0a26f7" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="275.0" startX="1100.0" startY="275.0" stroke="#09da67" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="580.0" startX="1100.0" startY="580.0" stroke="#f80808" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="625.0" startX="1100.0" startY="625.0" stroke="#09da67" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="670.0" startX="1100.0" startY="670.0" stroke="#0a26f7" strokeWidth="4.0" />
+      <Label layoutX="1172.0" layoutY="222.0" text="X軸">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1172.0" layoutY="265.0" text="Y軸">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1172.0" layoutY="308.0" text="Z軸">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1172.0" layoutY="658.0" text="Z軸">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1172.0" layoutY="615.0" text="Y軸">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="1172.0" layoutY="572.0" text="X軸">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="261.0" text="加速度">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="627.0" text="角速度">
+         <font>
+            <Font name="YuGothic Medium" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="homeButton" layoutX="13.0" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="39.0" prefWidth="39.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="compareButton" layoutX="85.0" mnemonicParsing="false" onAction="#compareButtonAction" prefHeight="39.0" prefWidth="39.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@compare.PNG" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="configButton" layoutX="160.0" mnemonicParsing="false" onAction="#configButtonAction" prefHeight="39.0" prefWidth="39.0">
+         <graphic>
+            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@config.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="startButton" layoutX="15.0" layoutY="53.0" mnemonicParsing="false" onAction="#startButtonAction" prefHeight="34.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@start.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="stopButton" disable="true" layoutX="87.0" layoutY="53.0" mnemonicParsing="false" onAction="#stopButtonAction" prefHeight="34.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@stop.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="saveButton" layoutX="162.0" layoutY="53.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="34.0" prefWidth="34.0">
+         <graphic>
+            <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+
+      
+   </children>
+</Pane>
