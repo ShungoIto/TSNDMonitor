@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TelnetConnector {
 	private final static int DEFAULT_TELNET_PORT = 23;
@@ -60,7 +62,7 @@ public class TelnetConnector {
 			if (port == DEFAULT_TELNET_PORT) {
 				negotiation(os, is);
 			}
-			if(socket.isConnected()==true) Main.log = Main.log+"Connected\n";
+			//if(socket.isConnected()==true) Main.log = Main.log+"Connected\n";
 			System.out.println("os = "+os);
 			StreamConnector socketToLog = new StreamConnector(is, System.out);                  // ソケット→ログ
 
@@ -96,7 +98,7 @@ public class TelnetConnector {
 		System.out.println("inputcmd = "+buff+ ", length = "+cmdLen+ ", command = \""+new String(buff)+"\"");
 		os.write(buff, 0, cmdLen);
 		os.flush();
-		Main.log = Main.log + cmd;
+		//Main.log = Main.log + cmd;
 		cmd = "";	
 	}
 	
@@ -122,15 +124,23 @@ public class TelnetConnector {
 			try {
 				while (true) {
 					byte[] buff = new byte[1024];
-					int n = is.read(buff);
-					if (n > 0) {
-						System.out.println("os= ="+os+", n="+n);
-						os.write(buff, 0, n);
-						buffStr = new String(buff, "UTF-8");
-						Main.log = Main.log+buffStr;
+					ArrayList buffList = new ArrayList();
+					int n = is.read(buff);//文字数
+					int count=0, index=0;
+					if(n>0){
+						byte[] newBuff = new byte[n/2];
+						for(int i=0;i<n;i++){
+							if(buff[i]!=0){
+								newBuff[count] = buff[i];
+								count++;
+							}	
+						}
+						String buffStr = new String(newBuff, "UTF-8");
+						HomeController.addSensorData(newBuff); 
 					}
 				}
-			} catch (IOException e) {
+			}
+				catch (IOException e) {
 				e.printStackTrace(System.out);
 				System.out.println("入出力の書き込み中に例外が発生しました");
 				System.exit(1);
