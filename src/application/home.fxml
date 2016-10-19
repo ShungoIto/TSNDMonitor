@@ -63,29 +63,11 @@
             <Font name="YuGothic Medium" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="homeButton" layoutX="13.0" mnemonicParsing="false" onAction="#homeButtonAction" prefHeight="39.0" prefWidth="39.0">
+      <Button fx:id="powerButton" layoutX="13.0" mnemonicParsing="false" onAction="#powerButtonAction" prefHeight="39.0" prefWidth="39.0">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@home.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="compareButton" layoutX="85.0" mnemonicParsing="false" onAction="#compareButtonAction" prefHeight="39.0" prefWidth="39.0">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@compare.PNG" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="configButton" layoutX="160.0" mnemonicParsing="false" onAction="#configButtonAction" prefHeight="39.0" prefWidth="39.0">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@config.png" />
+                  <Image url="@power.png" />
                </image>
             </ImageView>
          </graphic>
@@ -104,15 +86,6 @@
             <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@stop.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="saveButton" layoutX="162.0" layoutY="53.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="34.0" prefWidth="34.0">
-         <graphic>
-            <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@save.png" />
                </image>
             </ImageView>
          </graphic>

@@ -20,21 +20,16 @@ import javafx.util.Duration;
 public class HomeController {
   
   final static int DATA_LENGTH = 201;
+  int bluetoothBtnCount=0;
   
   @FXML
   private Pane pane;
   @FXML
-  private Button homeButton;
-  @FXML
-  private Button compareButton;
-  @FXML
-  private Button configButton;
+  private Button powerButton;
   @FXML
   private Button startButton;
   @FXML
   private Button stopButton;
-  @FXML
-  private Button saveButton;
   
   private Timeline timeline;
   private static ArrayList<Double> x = new ArrayList<Double>();
@@ -123,54 +118,36 @@ public class HomeController {
   }
 
   @FXML
-  private void homeButtonAction(ActionEvent event){
+  private void powerButtonAction(ActionEvent event) throws IOException{
+    if(bluetoothBtnCount%2==0){
+      Main.host = "localhost";
+      Main.port = 11000;
+      Main.tc.execute(Main.host, Main.port);
+      bluetoothBtnCount++;
+    }
+    else{
+      if(TelnetConnector.socket.isConnected()==true){
+        Main.tc.DisConnect();
+        bluetoothBtnCount++;
+      }
+    }
   }
-  @FXML
-  private void compareButtonAction(ActionEvent event){
-  }
-  @FXML
-  private void configButtonAction(ActionEvent event){
-  }
+  
   @FXML
   private void startButtonAction(ActionEvent event) throws IOException{
     startButton.setDisable(true);
     stopButton.setDisable(false);
-//    Main.log = "";    
-    addDummyData();
-    
-    //センサデータにstartコマンドを送信
     Main.tc.CommandToSensor("start\n", TelnetConnector.os);
-
-//    timeline = new Timeline(new KeyFrame(Duration.seconds(0.03), new EventHandler<ActionEvent>(){
-//      @Override
-//      public void handle(final ActionEvent e){
-//        addDummyData();
-//      }
-//    }));
-//    timeline.setCycleCount(Timeline.INDEFINITE);
-//    timeline.play();
   }
   @FXML
   private void stopButtonAction(ActionEvent event) throws IOException{
- // タイムラインの停止
-//    if(timeline != null) {
-//        timeline.stop();
-//        timeline = null;
-//        startButton.setDisable(false);
-//        stopButton.setDisable(true);
-//        System.out.println("stop");
-//    }
-	startButton.setDisable(false);
+    startButton.setDisable(false);
     stopButton.setDisable(true);
     Main.tc.CommandToSensor("stop\n", TelnetConnector.os);
-  }
-  @FXML
-  private void saveButtonAction(ActionEvent event){
   }
   
   static public void addSensorData(byte[] buff) throws UnsupportedEncodingException{
 	  double accele1=0, accele2=0, accele3=0, gyro1=0, gyro2=0, gyro3=0;
-	  int agsCount  =  0;
 	  
 	  if(buff[0]==97 && buff[1]==103 && buff[2]==115){
 		  System.out.println("----------------------------------------------------------");
@@ -193,6 +170,7 @@ public class HomeController {
 		  gyro1 = Double.parseDouble(splitStr[5]);
 		  gyro2 = Double.parseDouble(splitStr[6]);
 		  gyro3 = Double.parseDouble(splitStr[7]);
+		  
 		  // グラフ描画のためのセット
 		  acceleData1.add(accele1);
 		  acceleData2.add(accele2);
@@ -209,6 +187,7 @@ public class HomeController {
 		      gyroData2.remove(0);
 		      gyroData3.remove(0);
 		  }
+		  
 		  double[] x1 = new double[x.size()];
 		  double[] a1 = new double[acceleData1.size()];
 		  double[] a2 = new double[acceleData2.size()];
@@ -228,6 +207,7 @@ public class HomeController {
 		      g2[i] = gyroData2.get(i);
 		      g3[i] = gyroData3.get(i);
 		  }
+		  
 		  acceleDataX.setData(x1, a1);
 		  acceleDataY.setData(x1, a2);
 		  acceleDataZ.setData(x1, a3);
