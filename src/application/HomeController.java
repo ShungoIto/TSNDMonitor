@@ -20,13 +20,14 @@ import javafx.util.Duration;
 public class HomeController {
   
   final static int DATA_LENGTH = 201;
+  int bluetoothBtnCount=0;
   
   @FXML
   private Pane pane;
   @FXML
   private Button homeButton;
   @FXML
-  private Button compareButton;
+  private Button bluetoothButton;
   @FXML
   private Button configButton;
   @FXML
@@ -125,8 +126,21 @@ public class HomeController {
   @FXML
   private void homeButtonAction(ActionEvent event){
   }
+  
   @FXML
-  private void compareButtonAction(ActionEvent event){
+  private void bluetoothButtonAction(ActionEvent event) throws IOException{
+    if(bluetoothBtnCount%2==0){
+      Main.host = "localhost";
+      Main.port = 11000;
+      Main.tc.execute(Main.host, Main.port);
+      bluetoothBtnCount++;
+    }
+    else{
+      if(TelnetConnector.socket.isConnected()==true){
+        Main.tc.DisConnect();
+        bluetoothBtnCount++;
+      }
+    }
   }
   @FXML
   private void configButtonAction(ActionEvent event){
@@ -135,32 +149,11 @@ public class HomeController {
   private void startButtonAction(ActionEvent event) throws IOException{
     startButton.setDisable(true);
     stopButton.setDisable(false);
-//    Main.log = "";    
-    addDummyData();
-    
-    //センサデータにstartコマンドを送信
     Main.tc.CommandToSensor("start\n", TelnetConnector.os);
-
-//    timeline = new Timeline(new KeyFrame(Duration.seconds(0.03), new EventHandler<ActionEvent>(){
-//      @Override
-//      public void handle(final ActionEvent e){
-//        addDummyData();
-//      }
-//    }));
-//    timeline.setCycleCount(Timeline.INDEFINITE);
-//    timeline.play();
   }
   @FXML
   private void stopButtonAction(ActionEvent event) throws IOException{
- // タイムラインの停止
-//    if(timeline != null) {
-//        timeline.stop();
-//        timeline = null;
-//        startButton.setDisable(false);
-//        stopButton.setDisable(true);
-//        System.out.println("stop");
-//    }
-	startButton.setDisable(false);
+    startButton.setDisable(false);
     stopButton.setDisable(true);
     Main.tc.CommandToSensor("stop\n", TelnetConnector.os);
   }

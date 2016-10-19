@@ -24,11 +24,6 @@ public class Main extends Application {
 	  stage.setTitle("TSND Moniter");
 	  
 	  // センサに接続
-	  // TODO: 設定画面を作って、設定画面内で接続できるようにする 
-	  host = "localhost";
-	  port = 11000;
-	  tc.execute(host, port);
-	  
 	  Parent fxmlSchene = FXMLLoader.load(getClass().getResource("home.fxml"));
 	  Scene scene = new Scene(fxmlSchene, 1280, 800);
 	  stage.setScene(scene);

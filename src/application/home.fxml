@@ -72,20 +72,11 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="compareButton" layoutX="85.0" mnemonicParsing="false" onAction="#compareButtonAction" prefHeight="39.0" prefWidth="39.0">
+      <Button fx:id="bluetoothButton" layoutX="85.0" mnemonicParsing="false" onAction="#bluetoothButtonAction" prefHeight="39.0" prefWidth="39.0">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@compare.PNG" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="configButton" layoutX="160.0" mnemonicParsing="false" onAction="#configButtonAction" prefHeight="39.0" prefWidth="39.0">
-         <graphic>
-            <ImageView fitHeight="39.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@config.png" />
+                  <Image url="@bluetooth.png" />
                </image>
             </ImageView>
          </graphic>
