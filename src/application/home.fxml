@@ -17,12 +17,12 @@
       <Line endX="130.0" endY="800.0" startX="130.0" startY="100.0" />
       <Line endX="1080.0" endY="800.0" startX="1080.0" startY="100.0" />
       <Line endX="1280.0" endY="100.0" startY="100.0" />
-      <Line endX="1150.0" endY="230.0" startX="1100.0" startY="230.0" stroke="#f80808" strokeWidth="4.0" />
-      <Line endX="1150.0" endY="320.0" startX="1100.0" startY="320.0" stroke="#0a26f7" strokeWidth="4.0" />
-      <Line endX="1150.0" endY="275.0" startX="1100.0" startY="275.0" stroke="#09da67" strokeWidth="4.0" />
-      <Line endX="1150.0" endY="580.0" startX="1100.0" startY="580.0" stroke="#f80808" strokeWidth="4.0" />
-      <Line endX="1150.0" endY="625.0" startX="1100.0" startY="625.0" stroke="#09da67" strokeWidth="4.0" />
-      <Line endX="1150.0" endY="670.0" startX="1100.0" startY="670.0" stroke="#0a26f7" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="230.0" startX="1100.0" startY="230.0" stroke="#f3622d" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="320.0" startX="1100.0" startY="320.0" stroke="#57b757" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="275.0" startX="1100.0" startY="275.0" stroke="#fba71b" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="580.0" startX="1100.0" startY="580.0" stroke="#f3622d" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="625.0" startX="1100.0" startY="625.0" stroke="#fba71b" strokeWidth="4.0" />
+      <Line endX="1150.0" endY="670.0" startX="1100.0" startY="670.0" stroke="#57b757" strokeWidth="4.0" />
       <Label layoutX="1172.0" layoutY="222.0" text="X軸">
          <font>
             <Font name="YuGothic Medium" size="24.0" />
